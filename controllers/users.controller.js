@@ -79,9 +79,11 @@ const userLogin = (req,res,err) => {
                  * Because express-session module alread processed cookie for session id.
                  * So The only thing you should do is just code req.session.<sth>
                  */
-                req.session.id = id;
+                req.session.userId = id;
                 return res.send({
-                    "msg":"Login Success"
+                    "msg":"Login Success",
+                    "sid":req.session.id,
+                    "userId":req.session.userId
                 })
             }
         }
@@ -91,7 +93,25 @@ const userLogin = (req,res,err) => {
     })
 }
 
+const userLogout = (req,res,err) => {
+    if(req.session.userId){
+        console.log(req.session.id+' is logout');
+        req.session.destroy(function(err){
+            if(err) throw err;
+        });
+        res.send({
+            "msg":"Logout is success"
+        });
+    }
+    else{
+        res.send({
+            "msg":"Not logined"
+        })
+    }
+}
+
 module.exports = {
     userRegister,
-    userLogin
+    userLogin,
+    userLogout
 };

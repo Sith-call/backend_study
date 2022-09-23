@@ -1,5 +1,5 @@
 const cookieConfig = {
-    httpOnly: true, 
+    httpOnly: false, 
     maxAge: 1000000,
     signed: true 
   };
