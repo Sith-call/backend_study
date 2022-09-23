@@ -1,10 +1,14 @@
+require('dotenv').config({path:"/config/.env"});
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 
 var indexRouter = require('./routes/index');
+var testRouter = require('./routes/test.router.js');
 var usersRouter = require('./routes/users.router.js');
 
 var app = express();
@@ -16,10 +20,20 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser("secret_value")); // Set cookie secret value as envionment
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret:"secret_value",
+  resave:false,
+  saveUninitialized:true,
+  store:new FileStore(),
+  cookie:{
+    maxAge:1000
+  }
+}));
 
 app.use('/', indexRouter);
+app.use('/test', usersRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
