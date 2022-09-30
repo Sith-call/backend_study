@@ -1,4 +1,5 @@
 # API DOCUMENTATION
+
 /users
 	/register
 		METHOD : POST
