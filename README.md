@@ -1,25 +1,125 @@
-# mysql docker command
+# API DOCUMENTATION
+/users
+	/register
+		METHOD : POST
+		REQEUST BODY
+            {
+                    "id":"tester1",
+                    "password":"1234"
+            }
+		RESPONSE BODY
+        > SUCCESS
+            {
+                "id": "test34"
+            }
+        > FAIL
+            {
+                "err": "user id already exist"
+            }
 
-docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=<password> -d -p 3306:3306 mysql:latest
+	/login
+		METHOD : POST
+        REQEUST BODY
+            {
+                "id":"tester1",
+                "password":"1234"
+            }
+        RESPONSE BODY
+        > SUCCESS
+            {
+                "msg": "Login Success",
+                "sid": "DK3CO8vuomGB5odyYEB3Cluj2vw6l53w",
+                "userId": "tester1"
+            }
+        > FAIL
+            {
+                "msg": "Incorrect Information"
+            }
 
-docker exec -it mysql-container bash
+	/logout
+        METHOD : GET
+        RESPONSE BODY
+        > SUCCESS
+            {
+                "msg": "Logout is success"
+            }
+        > FAIL
+            {
+                "msg": "Not logined"
+            }
 
-mysql -u root -p
+/boads
+    > CREATE
+        METHOS : POST 
+        REQEUST BODY
+            {
+                "title": "test2",
+                "content": "hi",
+                "writer": "wschoe"
+            }
+        RESPONSE BODY
+        > SUCCESS
+            {
+                "id": 3,
+                "title": "test2",
+                "content": "hi",
+                "writer": "wschoe",
+                "updatedAt": "2022-09-30T13:39:13.190Z",
+                "createdAt": "2022-09-30T13:39:13.190Z"
+            }
+        > FAIL
+            ERROR MESSGE FROM NODE.JS
+    
+    > READ ALL
+        METHOD : GET
+        RESPONSE BODY
+            [
+                {
+                    "id": 1,
+                    "title": "update",
+                    "content": "update",
+                    "writer": "update",
+                    "createdAt": "2022-09-30T13:33:25.000Z",
+                    "updatedAt": "2022-09-30T13:39:21.000Z"
+                },
+                {
+                    "id": 3,
+                    "title": "test2",
+                    "content": "hi",
+                    "writer": "wschoe",
+                    "createdAt": "2022-09-30T13:39:13.000Z",
+                    "updatedAt": "2022-09-30T13:39:13.000Z"
+                }
+            ]
 
-# mysql orm command for Board
+    > UPDATE
+        METHOD : PUT
+            REQEUST BODY
+                {
+                    "title": "update",
+                    "content": "update",
+                    "writer": "update"
+                }
+            RESPONSE BODY
+                [ 
+                    1 
+                ]
+    
+    /:id
+        > READ ONE
+            RESPONSE BODY
+                {
+                    "id": 1,
+                    "title": "update",
+                    "content": "update",
+                    "writer": "update",
+                    "createdAt": "2022-09-30T13:33:25.000Z",
+                    "updatedAt": "2022-09-30T13:39:21.000Z"
+                }
 
-npx sequelize model:generate --name Boards --attributes title:string,content:string,writer:string
-
-npx sequelize-cli db:migrate
-
-# referrence
-
-## mysql docker 
-https://poiemaweb.com/docker-mysql
-
-## express sequelize
-https://velog.io/@ktaewon98/Node-Mysql-ORM%EC%9C%BC%EB%A1%9C-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0
-
-https://victorydntmd.tistory.com/27
-
-https://fomaios.tistory.com/entry/Nodejs-Sequelize%EB%A1%9C-CRUD-%EA%B5%AC%ED%98%84%ED%95%B4-%EB%B3%B4%EA%B8%B0-feat-MySQL
+        > DELETE 
+            RESPONSE BODY
+                {
+                    "msg": "Post is deleted."
+                }
+    
