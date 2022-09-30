@@ -6,12 +6,22 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const models = require("./models/index.js");
 
 var indexRouter = require('./routes/index');
 var testRouter = require('./routes/test.router.js');
 var usersRouter = require('./routes/users.router.js');
+var boardsRouter = require('./routes/boards.router.js');
 
 var app = express();
+
+// setting for database
+models.sequelize.sync().then( () => {
+  console.log(" DB 연결 성공");
+}).catch(err => {
+  console.log("연결 실패");
+  console.log(err);
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,6 +45,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/test', testRouter);
 app.use('/users', usersRouter);
+app.use('/boards', boardsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

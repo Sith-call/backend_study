@@ -15,7 +15,7 @@ const userRegister = (req, res, err) => {
     
     // # Load Database
     // 1. Use fs module to read binary json file and encode it.
-    let rawdata = fs.readFileSync('./model/db.json',{encoding:'utf8',flag:'r'});
+    let rawdata = fs.readFileSync('./models/db.json',{encoding:'utf8',flag:'r'});
     // 2. make binary json file JSON Type.
     let data = JSON.parse(rawdata);
     // 3. Parsing JSON DB file.
@@ -49,7 +49,7 @@ const userRegister = (req, res, err) => {
         "count":count,
         "users":users
     }
-    fs.writeFileSync('./model/db.json',JSON.stringify(newData));
+    fs.writeFileSync('./models/db.json',JSON.stringify(newData));
 
     // # Responsd
     return res.send({
@@ -63,7 +63,7 @@ const userLogin = (req,res,err) => {
     let password = req.body.password;
 
     // # Load Database
-    let rawdata = fs.readFileSync('./model/db.json',{encoding:'utf8',flag:'r'});
+    let rawdata = fs.readFileSync('./models/db.json',{encoding:'utf8',flag:'r'});
     let data = JSON.parse(rawdata);
     let count = data['count'];
     let users = data['users'];
