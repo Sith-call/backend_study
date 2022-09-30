@@ -1,6 +1,8 @@
 # API DOCUMENTATION
 
 ```
+BASE URL : SERVER IP
+
 /users
 	/register
 		METHOD : POST
