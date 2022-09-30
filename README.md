@@ -1,7 +1,7 @@
 # API DOCUMENTATION
 
 ```
-BASE URL : SERVER IP
+BASE URL : localhost:5000
 
 /users
 	/register

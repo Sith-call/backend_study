@@ -18,6 +18,10 @@ var swaggerUi = require("swagger-ui-express");
 
 var app = express();
 
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
 // setting for database
 models.sequelize.sync().then( () => {
   console.log(" DB 연결 성공");
