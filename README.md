@@ -1,5 +1,6 @@
 # API DOCUMENTATION
 
+```
 /users
 	/register
 		METHOD : POST
@@ -123,4 +124,4 @@
                 {
                     "msg": "Post is deleted."
                 }
-    
+```
