@@ -10,14 +10,14 @@
                     "password":"1234"
             }
 		RESPONSE BODY
-        > SUCCESS
-            {
-                "id": "test34"
-            }
-        > FAIL
-            {
-                "err": "user id already exist"
-            }
+            > SUCCESS
+                {
+                    "id": "test34"
+                }
+            > FAIL
+                {
+                    "err": "user id already exist"
+                }
 
 	/login
 		METHOD : POST
@@ -27,28 +27,28 @@
                 "password":"1234"
             }
         RESPONSE BODY
-        > SUCCESS
-            {
-                "msg": "Login Success",
-                "sid": "DK3CO8vuomGB5odyYEB3Cluj2vw6l53w",
-                "userId": "tester1"
-            }
-        > FAIL
-            {
-                "msg": "Incorrect Information"
-            }
+            > SUCCESS
+                {
+                    "msg": "Login Success",
+                    "sid": "DK3CO8vuomGB5odyYEB3Cluj2vw6l53w",
+                    "userId": "tester1"
+                }
+            > FAIL
+                {
+                    "msg": "Incorrect Information"
+                }
 
 	/logout
         METHOD : GET
         RESPONSE BODY
-        > SUCCESS
-            {
-                "msg": "Logout is success"
-            }
-        > FAIL
-            {
-                "msg": "Not logined"
-            }
+            > SUCCESS
+                {
+                    "msg": "Logout is success"
+                }
+            > FAIL
+                {
+                    "msg": "Not logined"
+                }
 
 /boads
     > CREATE
@@ -60,17 +60,17 @@
                 "writer": "wschoe"
             }
         RESPONSE BODY
-        > SUCCESS
-            {
-                "id": 3,
-                "title": "test2",
-                "content": "hi",
-                "writer": "wschoe",
-                "updatedAt": "2022-09-30T13:39:13.190Z",
-                "createdAt": "2022-09-30T13:39:13.190Z"
-            }
-        > FAIL
-            ERROR MESSGE FROM NODE.JS
+            > SUCCESS
+                {
+                    "id": 3,
+                    "title": "test2",
+                    "content": "hi",
+                    "writer": "wschoe",
+                    "updatedAt": "2022-09-30T13:39:13.190Z",
+                    "createdAt": "2022-09-30T13:39:13.190Z"
+                }
+            > FAIL
+                ERROR MESSGE FROM NODE.JS
     
     > READ ALL
         METHOD : GET
