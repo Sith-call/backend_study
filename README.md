@@ -1,7 +1,7 @@
 # API DOCUMENTATION
 
 ```
-BASE URL : localhost:5000
+BASE URL : localhost:8000
 
 /users
 	/register
