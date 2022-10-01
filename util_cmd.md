@@ -13,6 +13,7 @@ mysql -u root -p
 npx sequelize model:generate --name Boards --attributes title:string,content:string,writer:string
 
 npx sequelize-cli db:migrate
+sequelize db:migrate:undo --env development
 
 # referrence
 
@@ -25,3 +26,14 @@ https://velog.io/@ktaewon98/Node-Mysql-ORM%EC%9C%BC%EB%A1%9C-%EC%82%AC%EC%9A%A9%
 https://victorydntmd.tistory.com/27
 
 https://fomaios.tistory.com/entry/Nodejs-Sequelize%EB%A1%9C-CRUD-%EA%B5%AC%ED%98%84%ED%95%B4-%EB%B3%B4%EA%B8%B0-feat-MySQL
+
+## command for seed data by using sequelize
+
+<!-- npx sequelize-cli db:seed:all -->
+
+### command for inserting seed data to Boards
+sequelize db:seed --seed 20221001052213-posts.js
+
+### command for undo seed data
+sequelize db:seed:undo
+
