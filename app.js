@@ -15,12 +15,9 @@ var boardsRouter = require('./routes/boards.router.js');
 
 var swaggerJsdoc = require("swagger-jsdoc");
 var swaggerUi = require("swagger-ui-express");
+const cors = require('cors');
 
 var app = express();
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 // setting for database
 models.sequelize.sync().then( () => {
@@ -47,6 +44,9 @@ app.use(session({
   cookie:{
     maxAge:1000
   }
+}));
+app.use(cors({
+  origin: '*', // 모든 출처 허용 옵션. true 를 써도 된다.
 }));
 
 // setting for swagger
