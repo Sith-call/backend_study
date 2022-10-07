@@ -46,7 +46,8 @@ app.use(session({
   }
 }));
 app.use(cors({
-  origin: '*', // 모든 출처 허용 옵션. true 를 써도 된다.
+  origin: 'http://localhost:3000',
+  credentials:true 
 }));
 
 // setting for swagger
